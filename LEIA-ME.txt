@@ -1,0 +1,76 @@
+TURNO - CONTROLE DE FREELAS
+Versao 1.0 | Aplicativo web local (PWA) para iPhone e outros dispositivos
+
+O QUE FUNCIONA
+- Cadastrar diversos trabalhos/locais, cada um com valor por hora.
+- Registrar entrada com cronometro em tempo real; pausar e retomar.
+- Encerrar turno: calcular automaticamente tempo liquido e pagamento.
+- Registrar e editar turnos manualmente, inclusive horarios antigos.
+- Somar horas e pagamentos da semana, com historico e grafico.
+- Marcar a semana como paga ou pendente.
+- Exportar resumo semanal, planilha CSV e backup JSON.
+- Restaurar backup e usar offline depois de instalado.
+- Nenhuma conta, senha, API ou banco remoto: tudo no IndexedDB do aparelho.
+
+IMPORTANTE SOBRE O IPHONE
+O iOS nao instala arquivos .exe ou paginas HTML baixadas como aplicativo
+nativo. Esta versao usa PWA: voce abre um endereco HTTPS no Safari e
+seleciona Compartilhar > Adicionar a Tela de Inicio. Depois disso, abre
+como um app e funciona sem internet, apos o primeiro carregamento online.
+
+COMO PUBLICAR GRATUITAMENTE NO GITHUB PAGES
+1. Crie uma conta no https://github.com (se nao tiver).
+2. Crie um repositorio novo, por exemplo "turno-freela", e deixe-o Public.
+3. Descompacte o ZIP e envie TODOS os arquivos deste pacote na raiz do
+   repositorio (index.html, app.js, styles.css, sw.js etc.).
+4. Abra Settings > Pages > Build and deployment > Deploy from a branch.
+5. Escolha branch main, pasta /(root) e clique Save.
+6. Aguarde a publicacao e abra o link HTTPS gerado, por exemplo:
+   https://seuusuario.github.io/turno-freela/
+7. No IPHONE, abra o link pelo SAFARI (nao navegador dentro de outro app).
+8. Toque em Compartilhar > Adicionar a Tela de Inicio > Adicionar.
+9. Abra o icone Turno, cadastre o local e comece a usar.
+
+Alternativa: hospede estes mesmos arquivos em qualquer hospedagem de
+arquivos estaticos que forneca HTTPS (ex.: Cloudflare Pages).
+
+PRIVACIDADE E BACKUP
+O codigo do app hospedado fica publico quando o repositorio GitHub e
+publico. Seus dados nao sao enviados ao GitHub: ficam no armazenamento
+local do seu proprio dispositivo. Os arquivos do pacote nao contem
+informacoes pessoais suas.
+
+O iPhone pode eliminar dados locais se o app for apagado ou se voce
+limpar os dados dos sites. Use Ajustes > Salvar backup completo e guarde
+o JSON em Arquivos/iCloud regularmente, especialmente apos receber.
+Instalacoes em navegadores/dispositivos diferentes nao compartilham dados.
+
+SOBRE CALCULOS
+- O valor em tempo real e proporcional a duracao trabalhada em segundos.
+- Pausas pelo botao sao descontadas automaticamente.
+- No encerramento, voce pode descontar intervalo adicional em minutos.
+- Lancamentos manuais podem incluir o desconto adicional.
+- Turnos que passam da meia-noite sao atribuidos ao dia da entrada.
+- O valor por hora e congelado em cada turno e nao muda quando voce
+  edita o cadastro do local posteriormente.
+- Semana vai de segunda a domingo. Turnos abertos entram nos totais
+  somente depois de encerrados.
+- A receber mostra somente turnos ainda nao marcados como pagos.
+- O cronometro mede a diferenca entre os horarios: ao bloquear a tela,
+  o tempo continua sendo contabilizado quando voce voltar a abrir o app.
+
+TESTAR NO COMPUTADOR (OPCIONAL)
+Na pasta extraida, se voce tiver Python 3 instalado, abra o terminal e
+execute: python -m http.server 8080
+Depois acesse http://localhost:8080 no navegador.
+
+ARQUIVOS
+index.html             pagina principal
+styles.css             estilo mobile e desktop
+app.js                 funcionalidades e banco IndexedDB
+manifest.webmanifest   configuracao para instalar na tela inicial
+sw.js                  cache para funcionar offline
+icon.svg/png           icones
+
+Este app nao exige Docker, Node, Oracle nem configuracao de servidor de
+banco de dados. Hospedar os arquivos HTML/CSS/JS por HTTPS e suficiente.
